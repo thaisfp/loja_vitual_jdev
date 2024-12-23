@@ -2,9 +2,13 @@ package com.example.loja_vitual_jdev.model;
 
 import java.io.Serializable;
 
+import com.example.loja_vitual_jdev.enums.TipoEndereco;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -46,6 +50,9 @@ public class Endereco implements Serializable {
     @JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
     private Pessoa pessoa;
 
+    @Enumerated(EnumType.STRING)
+    private TipoEndereco tipoEndereco;
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
