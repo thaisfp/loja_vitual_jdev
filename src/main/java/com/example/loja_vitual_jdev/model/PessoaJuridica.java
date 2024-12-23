@@ -1,8 +1,13 @@
+package com.example.loja_vitual_jdev.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "pessoa_fisica")
-@PrimaryKeyJoinColumn(name = "id")
+@Table(name = "pessoa_juridica")
 public class PessoaJuridica extends Pessoa {
 
     private static final long serialVersionUID = 1L;
