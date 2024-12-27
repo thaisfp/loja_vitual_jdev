@@ -2,9 +2,13 @@ package com.example.loja_vitual_jdev.model;
 
 import java.io.Serializable;
 
+import com.example.loja_vitual_jdev.enums.TipoEndereco;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,21 +21,23 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "imagem_produto")
-@SequenceGenerator(name = "seq_imagem_produto", sequenceName = "seq_imagem_produto", allocationSize = 1, initialValue = 1)
-public class ImagemProduto implements Serializable {
+@Table(name = "avaliacao_produto")
+@SequenceGenerator(name = "seq_avaliacao_produto", sequenceName = "seq_avaliacao_produto", allocationSize = 1, initialValue = 1)
+public class AvaliacaoProduto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_imagem_produto")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_avaliacao_produto")
     private Long id;
 
-    @Column(columnDefinition = "text")
-    private String imgOriginal;
+    private Integer nota;
 
-    @Column(columnDefinition = "text")
-    private String imgMiniatura;
+    private String descricao;
+
+    @ManyToOne(targetEntity = Pessoa.class)
+    @JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
+    private Pessoa pessoa;
 
     @ManyToOne
     @JoinColumn(name = "produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "produto_fk"))
@@ -45,7 +51,7 @@ public class ImagemProduto implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ImagemProduto other = (ImagemProduto) obj;
+        AvaliacaoProduto other = (AvaliacaoProduto) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -62,6 +68,6 @@ public class ImagemProduto implements Serializable {
         return result;
     }
 
-
+    
     
 }
