@@ -4,11 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.example.loja_vitual_jdev.enums.StatusContaReceber;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,34 +20,38 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "conta_receber")
-@SequenceGenerator(name = "seq_conta_receber", sequenceName = "seq_conta_receber", allocationSize = 1, initialValue = 1)
-public class ContaReceber implements Serializable {
+@Table(name = "nota_fiscal_compra")
+@SequenceGenerator(name = "seq_nota_fiscal_compra", sequenceName = "seq_nota_fiscal_compra", allocationSize = 1, initialValue = 1)
+public class NotaFiscalCompra implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_conta_receber")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_nota_fiscal_compra")
     private Long id;
 
-    private String descricao;
+    private String numeroNota;
 
-    @Enumerated(EnumType.STRING)
-    private StatusContaReceber status;
+    private String serieNota;
 
-    @Temporal(TemporalType.DATE)
-    private Date dtPagamento;
-
-    @Temporal(TemporalType.DATE)
-    private Date dtVencimento;
+    private String descricaoObs;
 
     private BigDecimal valorTotal;
 
     private BigDecimal valorDesconto;
 
+    private BigDecimal valorICMS;
+
+    @Temporal(TemporalType.DATE)
+    private Date dtCompra;
+
     @ManyToOne(targetEntity = Pessoa.class)
     @JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
     private Pessoa pessoa;
+
+    @ManyToOne
+    @JoinColumn(name = "conta_pagar_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "conta_pagar_fk"))
+    private ContaPagar contaPagar;
 
     @Override
     public boolean equals(Object obj) {
@@ -60,7 +61,7 @@ public class ContaReceber implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ContaReceber other = (ContaReceber) obj;
+        NotaFiscalCompra other = (NotaFiscalCompra) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -78,5 +79,4 @@ public class ContaReceber implements Serializable {
     }
 
     
-
 }

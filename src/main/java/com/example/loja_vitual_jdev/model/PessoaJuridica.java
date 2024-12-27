@@ -1,7 +1,6 @@
 package com.example.loja_vitual_jdev.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.Data;
 

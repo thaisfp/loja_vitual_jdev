@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.example.loja_vitual_jdev.enums.StatusContaReceber;
+import com.example.loja_vitual_jdev.enums.TipoEndereco;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -23,34 +25,24 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "conta_receber")
-@SequenceGenerator(name = "seq_conta_receber", sequenceName = "seq_conta_receber", allocationSize = 1, initialValue = 1)
-public class ContaReceber implements Serializable {
+@Table(name = "cupDesconto")
+@SequenceGenerator(name = "seq_cupDesconto", sequenceName = "seq_cupDesconto", allocationSize = 1, initialValue = 1)
+public class CupDesconto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_conta_receber")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cupDesconto")
     private Long id;
 
-    private String descricao;
+    private String codDesc;
 
-    @Enumerated(EnumType.STRING)
-    private StatusContaReceber status;
+    private BigDecimal valorRealDesc;
 
-    @Temporal(TemporalType.DATE)
-    private Date dtPagamento;
+    private BigDecimal valorPorcentagemDesc;
 
     @Temporal(TemporalType.DATE)
-    private Date dtVencimento;
-
-    private BigDecimal valorTotal;
-
-    private BigDecimal valorDesconto;
-
-    @ManyToOne(targetEntity = Pessoa.class)
-    @JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
-    private Pessoa pessoa;
+    private Date dtValidadeCupom;
 
     @Override
     public boolean equals(Object obj) {
@@ -60,7 +52,7 @@ public class ContaReceber implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ContaReceber other = (ContaReceber) obj;
+        CupDesconto other = (CupDesconto) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -76,7 +68,6 @@ public class ContaReceber implements Serializable {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
-
     
-
+    
 }

@@ -1,15 +1,10 @@
 package com.example.loja_vitual_jdev.model;
 
 import java.io.Serializable;
-import java.io.ObjectInputFilter.Status;
 import java.math.BigDecimal;
 import java.util.Date;
 
 import com.example.loja_vitual_jdev.enums.StatusContaPagar;
-import com.example.loja_vitual_jdev.enums.StatusContaReceber;
-import com.example.loja_vitual_jdev.enums.TipoEndereco;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
