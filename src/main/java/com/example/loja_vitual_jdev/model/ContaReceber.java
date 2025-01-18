@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.example.loja_vitual_jdev.enums.StatusContaReceber;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,17 +35,21 @@ public class ContaReceber implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_conta_receber")
     private Long id;
 
+        @Column(nullable = false)
     private String descricao;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusContaReceber status;
 
     @Temporal(TemporalType.DATE)
     private Date dtPagamento;
 
+    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dtVencimento;
 
+    @Column(nullable = false)
     private BigDecimal valorTotal;
 
     private BigDecimal valorDesconto;

@@ -3,6 +3,8 @@ package com.example.loja_vitual_jdev.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,17 +22,19 @@ import lombok.Data;
 public class CupDesconto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cupDesconto")
     private Long id;
 
+    @Column(nullable = false)
     private String codDesc;
 
     private BigDecimal valorRealDesc;
 
     private BigDecimal valorPorcentagemDesc;
 
+    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dtValidadeCupom;
 
@@ -58,6 +62,5 @@ public class CupDesconto implements Serializable {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
-    
-    
+
 }
