@@ -9,9 +9,13 @@
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -726,6 +730,7 @@ ALTER TABLE public.venda_compra_loja_virtual OWNER TO postgres;
 --
 
 COPY public.acesso (id, descricao) FROM stdin;
+\.
 
 
 --
@@ -735,7 +740,7 @@ COPY public.acesso (id, descricao) FROM stdin;
 --
 
 COPY public.avaliacao_produto (nota, id, pessoa_id, produto_id, descricao) FROM stdin;
-
+\.
 
 
 --
@@ -745,7 +750,7 @@ COPY public.avaliacao_produto (nota, id, pessoa_id, produto_id, descricao) FROM 
 --
 
 COPY public.categoria_produto (id, nome_descricao) FROM stdin;
-
+\.
 
 
 --
@@ -755,7 +760,7 @@ COPY public.categoria_produto (id, nome_descricao) FROM stdin;
 --
 
 COPY public.conta_pagar (dt_pagamento, dt_vencimento, valor_desconto, valor_total, id, pessoa_fornec_id, pessoa_id, descricao, status) FROM stdin;
-
+\.
 
 
 --
@@ -765,7 +770,7 @@ COPY public.conta_pagar (dt_pagamento, dt_vencimento, valor_desconto, valor_tota
 --
 
 COPY public.conta_receber (dt_pagamento, dt_vencimento, valor_desconto, valor_total, id, pessoa_id, descricao, status) FROM stdin;
-
+\.
 
 
 --
@@ -775,7 +780,7 @@ COPY public.conta_receber (dt_pagamento, dt_vencimento, valor_desconto, valor_to
 --
 
 COPY public.cup_desconto (dt_validade_cupom, valor_porcentagem_desc, valor_real_desc, id, cod_desc) FROM stdin;
-
+\.
 
 
 --
@@ -785,7 +790,7 @@ COPY public.cup_desconto (dt_validade_cupom, valor_porcentagem_desc, valor_real_
 --
 
 COPY public.endereco (id, pessoa_id, bairro, cep, cidade, complemento, numero, rua_logra, tipo_endereco, uf) FROM stdin;
-
+\.
 
 
 --
@@ -795,7 +800,7 @@ COPY public.endereco (id, pessoa_id, bairro, cep, cidade, complemento, numero, r
 --
 
 COPY public.forma_pagamento (id, descricao) FROM stdin;
-
+\.
 
 
 --
@@ -805,7 +810,7 @@ COPY public.forma_pagamento (id, descricao) FROM stdin;
 --
 
 COPY public.imagem_produto (id, produto_id, img_miniatura, img_original) FROM stdin;
-
+\.
 
 
 --
@@ -815,7 +820,7 @@ COPY public.imagem_produto (id, produto_id, img_miniatura, img_original) FROM st
 --
 
 COPY public.item_venda_loja (qtd, id, produto_id, venda_compra_loja_virtual_id) FROM stdin;
-
+\.
 
 
 --
@@ -825,7 +830,7 @@ COPY public.item_venda_loja (qtd, id, produto_id, venda_compra_loja_virtual_id) 
 --
 
 COPY public.marca_produto (id, nome_desc) FROM stdin;
-
+\.
 
 
 --
@@ -835,7 +840,7 @@ COPY public.marca_produto (id, nome_desc) FROM stdin;
 --
 
 COPY public.nota_fiscal_compra (dt_compra, valor_desconto, valor_total, valoricms, conta_pagar_id, id, pessoa_id, descricao_obs, numero_nota, serie_nota) FROM stdin;
-
+\.
 
 
 --
@@ -845,7 +850,7 @@ COPY public.nota_fiscal_compra (dt_compra, valor_desconto, valor_total, valoricm
 --
 
 COPY public.nota_fiscal_venda (id, venda_compra_loja_virtual_id, numero, pdf, serie, tipo, xml) FROM stdin;
-
+\.
 
 
 --
@@ -855,7 +860,7 @@ COPY public.nota_fiscal_venda (id, venda_compra_loja_virtual_id, numero, pdf, se
 --
 
 COPY public.nota_item_produto (qtd, id, nota_fiscal_compra_id, produto_id) FROM stdin;
-
+\.
 
 
 --
@@ -865,7 +870,7 @@ COPY public.nota_item_produto (qtd, id, nota_fiscal_compra_id, produto_id) FROM 
 --
 
 COPY public.pessoa_fisica (data_nascimento, id, cpf, email, nome, telefone) FROM stdin;
-
+\.
 
 
 --
@@ -875,7 +880,7 @@ COPY public.pessoa_fisica (data_nascimento, id, cpf, email, nome, telefone) FROM
 --
 
 COPY public.pessoa_juridica (id, categoria, cnpj, email, inscricao_estadual, inscricao_municipal, nome, nome_fantasia, razao_social, telefone) FROM stdin;
-
+\.
 
 
 --
@@ -885,7 +890,7 @@ COPY public.pessoa_juridica (id, categoria, cnpj, email, inscricao_estadual, ins
 --
 
 COPY public.produto (alerta_qtd_estoque, altura, ativo, largura, peso, profundidade, qtd_alerta_estoque, qtd_clique, qtd_estoque, valor_venda, id, descricao, link_youtube, nome, tipo_unidade) FROM stdin;
-
+\.
 
 
 --
@@ -895,7 +900,7 @@ COPY public.produto (alerta_qtd_estoque, altura, ativo, largura, peso, profundid
 --
 
 COPY public.status_rastreio (id, venda_compra_loja_virtual_id, centro_distribuicao, cidade, estado, status) FROM stdin;
-
+\.
 
 
 --
@@ -905,7 +910,7 @@ COPY public.status_rastreio (id, venda_compra_loja_virtual_id, centro_distribuic
 --
 
 COPY public.usuario (data_atual_senha, id, pessoa_id, login, senha) FROM stdin;
-
+\.
 
 
 --
@@ -915,7 +920,7 @@ COPY public.usuario (data_atual_senha, id, pessoa_id, login, senha) FROM stdin;
 --
 
 COPY public.usuarios_acessos (acesso_id, usuario_id) FROM stdin;
-
+\.
 
 
 --
@@ -925,7 +930,7 @@ COPY public.usuarios_acessos (acesso_id, usuario_id) FROM stdin;
 --
 
 COPY public.venda_compra_loja_virtual (dia_entrega, dt_entrega, dt_venda, valor_desconto, valor_frete, valor_total, cupom_desconto_id, endereco_cobranca_id, endereco_entrega_id, forma_pagamento_id, id, nota_fiscal_venda_id, pessoa_id) FROM stdin;
-
+\.
 
 
 --
